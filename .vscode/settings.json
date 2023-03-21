@@ -29,6 +29,11 @@
         "system_error": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "utility": "cpp",
+        "array": "cpp",
+        "unordered_map": "cpp",
+        "functional": "cpp",
+        "tuple": "cpp"
     }
 }

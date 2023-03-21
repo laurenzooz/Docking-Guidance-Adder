@@ -2,7 +2,9 @@
 #include <iostream>
 #include <cstring>
 #include <fstream>
-
+#include <math.h>
+#include <utility>
+#include <functional>
 
 #include "file_reader.h"
 #include "parse_apt_dat.h"
@@ -95,7 +97,34 @@ void add_stoppingpoint()
 }
 
 
-std::pair<double, double> get_marshaller_coordinates(double, double, double, double = 10)
+double deg2rad(double deg)
 {
+    return ((deg * M_PI) / 180.0);
+}
+
+double rad2deg(double rad)
+{
+    return ((rad * 180) / M_PI);
+}
+
+
+
+std::pair<double, double> get_marshaller_coordinates(double lat, double lon, double hdg, double dist = 10)
+{
+	double R = 6371000; // earth radius
+	double latr = deg2rad(lat);
+	double lonr = deg2rad(lon);
+	double hdgr = deg2rad(hdg);
+
+	//double lat_new = asin(sin())
+	//double lat_new = 
+
 	
+	double lat_new = asin(sin(latr) * cos(dist / R) + cos(latr) * sin(dist / R) * cos(hdgr));
+
+
+	double lon_new = lonr + atan2(sin(hdgr) * sin(dist / R) * cos(latr), cos(dist / R) - sin(latr) * sin(lat_new));
+
+	return (std::make_pair(rad2deg(lat_new), rad2deg(lon_new)));
+
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 #include "parse_apt_dat.h"
 #include "set_dsf_txt.h"
@@ -21,9 +22,14 @@
 
 int main()
 {
-	
+	std::vector<std::vector<double>> stand_data = read_apt_dat();
 
-	add_stoppingpoint();
+
+	// add_stoppingpoint();
+	std::pair<double, double> naatit = get_marshaller_coordinates(stand_data[0][0],  stand_data[1][0],  stand_data[2][0], 10);
+
+	std::cout << std::setprecision(8) << std::fixed << naatit.first << "\t" << naatit.second;
+
 
 	return 0;
 }

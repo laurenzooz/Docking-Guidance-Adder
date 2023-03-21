@@ -11,6 +11,7 @@ void add_stoppingpoint(); // adds the stoppingpoint.obj to every stand position 
 void add_marshaller(); // adds the stoppingpoint.obj to every stand position found in apt dat.
 
 std::pair<double, double> get_marshaller_coordinates(double, double, double, double = 10); // returns the new lat lon, input is (lat, lon, hdg, distance) 
-
+double deg2rad();
+double rad2deg();
 
 #endif
