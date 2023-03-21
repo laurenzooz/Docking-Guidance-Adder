@@ -24,9 +24,13 @@ int main()
 {
 	std::vector<std::vector<double>> stand_data = read_apt_dat();
 
+	double dist_input;
+
+	std::cout << "Enter the distance from the stand: ";
+	std::cin >> dist_input;
 
 	add_stoppingpoint();
-	add_marshaller();
+	add_marshaller(dist_input);
 	//std::pair<double, double> naatit = get_marshaller_coordinates(stand_data[0][0],  stand_data[1][0],  stand_data[2][0], 10);
 
 	//std::cout << std::setprecision(8) << std::fixed << naatit.first << "\t" << naatit.second;
