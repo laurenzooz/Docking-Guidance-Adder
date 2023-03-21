@@ -1,6 +1,8 @@
 #include <iostream>
 #include <fstream>
 
+#include "parse_apt_dat.h"
+
 /*
     TODO: 
     - Get the last obj id from the dsf file that is converted to txt (later, do the conversion urself)
@@ -11,6 +13,30 @@
 
 
 */
+
+
+std::string read_file_to_string(std::string path)
+{
+	std::ifstream file(path);
+
+	std::string file_input = "";
+	std::string row;
+	if (file.is_open())
+	{
+		while (std::getline(file, row))
+		{
+			file_input += row;
+			file_input.push_back('\n');
+		}
+	}
+	else
+	{
+		std::cout << "File not found!\n";
+	}
+	
+
+	return file_input;
+}
 
 
 int main()
