@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 
 #include "file_reader.h"
 
@@ -14,7 +15,7 @@ std::vector<std::vector<double>> read_apt_dat()
 	std::string input = read_file_to_string("Earth nav data/apt.dat"); 
 
 
-	size_t found = input.find("\n1300 "); // -1 if not found
+	size_t found = input.find("\n1300  "); // -1 if not found
 	while (found != -1)
 	{
 		std::string temp_row = ""; // read one row at a time (if the row has "1300 ")
@@ -110,6 +111,9 @@ std::vector<std::vector<double>> read_apt_dat()
 
 
 		}
+
+        size_t found_new = input.find("\n1300 ", found + 1); // continue from the next one
+		found = found_new;
 
 		
 	}
