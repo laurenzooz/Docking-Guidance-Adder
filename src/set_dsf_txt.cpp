@@ -5,6 +5,8 @@
 #include <math.h>
 #include <utility>
 #include <functional>
+#include <iomanip>
+
 
 #include "file_reader.h"
 #include "parse_apt_dat.h"
@@ -74,10 +76,13 @@ void add_stoppingpoint()
 		file += "OBJECT ";
 		file += std::to_string(id);
 		file += " ";
+		
 		file += std::to_string(stand_data[1][i]);
 		file += " ";
+		
 		file += std::to_string(stand_data[0][i]);
 		file += " ";
+		
 		file += std::to_string(stand_data[2][i]);
 		file += "\n";
 
@@ -109,6 +114,11 @@ double rad2deg(double rad)
 
 
 
+
+
+
+
+
 std::pair<double, double> get_marshaller_coordinates(double lat, double lon, double hdg, double dist = 10)
 {
 	double R = 6371000; // earth radius
@@ -128,3 +138,55 @@ std::pair<double, double> get_marshaller_coordinates(double lat, double lon, dou
 	return (std::make_pair(rad2deg(lat_new), rad2deg(lon_new)));
 
 }
+
+
+void add_marshaller(double dist = 20)
+{
+	std::vector<std::vector<double>> stand_data = read_apt_dat();
+
+	std::string file = read_file_to_string("Earth nav data/dsf_out.txt"); 
+
+	file += "\n\n"; 
+
+	file += "OBJECT_DEF adgs/Marshaller.obj\n";
+
+	int id = get_highest_id() + 2; // marshaller id is one higher than stoppingpoint
+	
+
+	for (int i = 0; i < stand_data[0].size(); i++)
+	{
+
+		std::pair<double, double> coords = get_marshaller_coordinates(stand_data[0][i], stand_data[1][i], stand_data[2][i], dist); 	// get the new coordinates with the given distance
+
+
+		file += "OBJECT ";
+		file += std::to_string(id);
+		file += " ";
+		
+		file += std::to_string(coords.second); 
+		file += " ";
+		
+		
+		file += std::to_string(coords.first);
+		file += " ";
+		
+		
+		file += std::to_string(stand_data[2][i]);
+		file += "\n";
+
+		// for some reason, in X-Plane dsf files the lat and lon are the wrong way around???
+
+	}
+
+	std::ofstream write_output("Earth nav data/dsf_out.txt");
+	write_output << file;
+
+
+	// write an output file
+
+	// std::cout << file;
+	
+// std::cout << "\n\n\n\n ID: " << id << "\n\n\n\n\n";
+}
+
+
