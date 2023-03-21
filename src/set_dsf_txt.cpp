@@ -140,7 +140,7 @@ std::pair<double, double> get_marshaller_coordinates(double lat, double lon, dou
 }
 
 
-void add_marshaller(double dist = 20)
+void add_marshaller(double dist = 20, int type = 0)
 {
 	std::vector<std::vector<double>> stand_data = read_apt_dat();
 
@@ -148,7 +148,14 @@ void add_marshaller(double dist = 20)
 
 	file += "\n\n"; 
 
-	file += "OBJECT_DEF adgs/Marshaller.obj\n";
+	if (type == 0)
+	{
+		file += "OBJECT_DEF adgs/Marshaller.obj\n";
+	}
+	else if (type == 1)
+	{
+		file += "OBJECT_DEF adgs/SafedockT2-5m-pole.obj\n";
+	}
 
 	int id = get_highest_id() + 2; // marshaller id is one higher than stoppingpoint
 	

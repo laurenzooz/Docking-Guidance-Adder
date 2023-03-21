@@ -26,11 +26,16 @@ int main()
 
 	double dist_input;
 
+	int type_input;
+
+	std::cout << "Enter the type of docking guidance system you want to use.\n[0] = Marshaller \n[1] = Safedock 2T on a 5m pole\n";
+	std::cin >> type_input;
+
 	std::cout << "Enter the distance from the stand: ";
 	std::cin >> dist_input;
 
 	add_stoppingpoint();
-	add_marshaller(dist_input);
+	add_marshaller(dist_input, type_input);
 	//std::pair<double, double> naatit = get_marshaller_coordinates(stand_data[0][0],  stand_data[1][0],  stand_data[2][0], 10);
 
 	//std::cout << std::setprecision(8) << std::fixed << naatit.first << "\t" << naatit.second;
