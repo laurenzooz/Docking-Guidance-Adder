@@ -1,5 +1,5 @@
-adg: Main.o file_reader.o parse_apt_dat.o set_dsf_txt
-	g++ Main.o file_reader.o parse_apt_dat.o set_dsf_txt-txt.o -o adg
+adg: Main.o file_reader.o parse_apt_dat.o set_dsf_txt.o
+	g++ Main.o file_reader.o parse_apt_dat.o set_dsf_txt.o -o adg
 
 
 Main.o: src/Main.cpp

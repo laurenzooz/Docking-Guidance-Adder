@@ -7,7 +7,7 @@
 
 std::vector<std::vector<double>> read_apt_dat()
 {
-    std::vector<std::vector<double>> stand_data;
+	std::vector<std::vector<double>> stand_data;
 
 	stand_data.resize(3); // [0]: Lat, [1]: Lon, [2]: Heading
 
@@ -112,11 +112,11 @@ std::vector<std::vector<double>> read_apt_dat()
 
 		}
 
-        size_t found_new = input.find("\n1300 ", found + 1); // continue from the next one
+		size_t found_new = input.find("\n1300 ", found + 1); // continue from the next one
 		found = found_new;
 
 		
 	}
 
-    return stand_data;
+	return stand_data;
 }
