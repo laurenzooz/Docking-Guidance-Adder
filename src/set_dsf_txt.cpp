@@ -72,18 +72,18 @@ void add_stoppingpoint()
 		file += "OBJECT ";
 		file += std::to_string(id);
 		file += " ";
+		file += std::to_string(stand_data[1][i]);
+		file += " ";
 		file += std::to_string(stand_data[0][i]);
 		file += " ";
 		file += std::to_string(stand_data[2][i]);
-		file += " ";
-		file += std::to_string(stand_data[1][i]);
 		file += "\n";
 
 		// for some reason, in X-Plane dsf files the lat and lon are the wrong way around???
 
 	}
 
-	std::ofstream write_output("dsf_out.txt");
+	std::ofstream write_output("Earth nav data/dsf_out.txt");
 	write_output << file;
 
 
@@ -92,4 +92,10 @@ void add_stoppingpoint()
 	// std::cout << file;
 	
 // std::cout << "\n\n\n\n ID: " << id << "\n\n\n\n\n";
+}
+
+
+std::pair<double, double> get_marshaller_coordinates(double, double, double, double = 10)
+{
+	
 }
