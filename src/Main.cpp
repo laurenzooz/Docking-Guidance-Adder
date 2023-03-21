@@ -21,13 +21,9 @@
 
 int main()
 {
-	std::vector<std::vector<double>> stand_data = read_apt_dat();
-	for (int i = 0; i < stand_data[0].size(); i++)
-	{
-		//std::cout << stand_data[0][i] << "\t" << stand_data[1][i] << "\t" << stand_data[2][i] << "\n";
-	}
+	
 
-	std::cout << get_highest_id() << "\n\n\n";
+	add_stoppingpoint();
 
 	return 0;
 }

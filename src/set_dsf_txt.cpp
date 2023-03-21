@@ -1,15 +1,16 @@
 #include <string>
 #include <iostream>
 #include <cstring>
+#include <fstream>
 
 
 #include "file_reader.h"
+#include "parse_apt_dat.h"
 
 
 int get_highest_id()
 {
 	std::string input = read_file_to_string("Earth nav data/dsf.txt"); 
-	std::cout << input;
 	
 	// TODO: A system that finds the dsf file itself, and doesn't require user to rename it to dsf.txt and moving
 
@@ -49,4 +50,46 @@ int get_highest_id()
 
 	
 
+}
+
+
+void add_stoppingpoint()
+{
+	std::vector<std::vector<double>> stand_data = read_apt_dat();
+
+	std::string file = read_file_to_string("Earth nav data/dsf.txt"); 
+
+	file += "\n\n"; // start writing the new stuff
+
+	// add the stoppingpoint object definition
+	file += "OBJECT_DEF adgs/StoppingPoint.obj\n";
+
+	int id = get_highest_id() + 1; // id for the stoppingpoint object
+	
+
+	for (int i = 0; i < stand_data[0].size(); i++)
+	{
+		file += "OBJECT ";
+		file += std::to_string(id);
+		file += " ";
+		file += std::to_string(stand_data[0][i]);
+		file += " ";
+		file += std::to_string(stand_data[2][i]);
+		file += " ";
+		file += std::to_string(stand_data[1][i]);
+		file += "\n";
+
+		// for some reason, in X-Plane dsf files the lat and lon are the wrong way around???
+
+	}
+
+	std::ofstream write_output("dsf_out.txt");
+	write_output << file;
+
+
+	// write an output file
+
+	// std::cout << file;
+	
+// std::cout << "\n\n\n\n ID: " << id << "\n\n\n\n\n";
 }
