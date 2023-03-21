@@ -94,7 +94,14 @@ std::vector<std::vector<double>> read_apt_dat()
 
 						if (temp_row[i] == ' ')
 						{
-								stand_data[2].push_back(std::stod(temp_str)); // hdg
+								double hdg = std::stod(temp_str);
+								// make sure heading is not negative (results in an error when converting to dsf)
+								if (hdg < 0)
+								{
+									hdg += 360;
+								}
+
+								stand_data[2].push_back(hdg); // hdg
 
 
 
