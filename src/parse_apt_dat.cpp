@@ -100,6 +100,11 @@ std::vector<std::vector<double>> read_apt_dat()
 								{
 									hdg += 360;
 								}
+								while (hdg > 360) 
+								// might also be higher than 360 apparently
+								{
+									hdg -= 360;
+								}
 
 								stand_data[2].push_back(hdg); // hdg
 
