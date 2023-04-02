@@ -1,9 +1,9 @@
-adg: Main.o file_reader.o parse_apt_dat.o set_dsf_txt.o
-	g++ Main.o file_reader.o parse_apt_dat.o set_dsf_txt.o -o adg
+adg: main.o file_reader.o parse_apt_dat.o set_dsf_txt.o
+	g++ main.o file_reader.o parse_apt_dat.o set_dsf_txt.o -o adg
 
 
-Main.o: src/Main.cpp
-	g++ -c src/Main.cpp
+main.o: src/main.cpp
+	g++ -c src/main.cpp
 
 file_reader.o: src/file_reader.cpp
 	g++ -c src/file_reader.cpp
